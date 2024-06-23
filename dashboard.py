@@ -119,8 +119,8 @@ def tab_client(df):
 
 def get_client():
     """Fetch data from FastAPI and select a client via a selectbox"""
-    #response = requests.get("http://localhost:8501/credit")
-    response = requests.get(f"https://fqw7wvgywmudbpkldjueby.streamlit.app/credit")
+    response = requests.get("http://localhost:8501/credit")
+    #response = requests.get(f"https://fqw7wvgywmudbpkldjueby.streamlit.app/credit")
     #response = requests.get("https://medlionp7.azurewebsites.net/credit")
     json_output = response.json()
     liste_id = json_output["liste_id"]
@@ -132,8 +132,8 @@ def get_client():
 
 def infos_client(client, col):
     """Fetch data from FastAPI and display the info of the selected client in the sidebar"""
-    #response = requests.get(f"http://localhost:8501/credit/{client}/data")
-    response = requests.get(f"https://fqw7wvgywmudbpkldjueby.streamlit.app/{client}/data")
+    response = requests.get(f"http://localhost:8501/credit/{client}/data")
+    #response = requests.get(f"https://fqw7wvgywmudbpkldjueby.streamlit.app/{client}/data")
     #response = requests.get(f"https://medlionp7.azurewebsites.net/credit/{client}/data")
     infos_clt = response.json()["data"][0]
     return infos_clt[col]
@@ -150,8 +150,8 @@ def get_color(result):
 def get_proba_for_client(client: int):
     #azure_api_url = f"https://medlionp7.azurewebsites.net/credit/{client}/predict"
     # response = requests.get(azure_api_url)
-    #local_api_url = f"http://localhost:8501/credit/{client}/predict"
-    local_api_url=f"https://fqw7wvgywmudbpkldjueby.streamlit.app/{client}/predict"
+    local_api_url = f"http://localhost:8501/credit/{client}/predict"
+    #local_api_url=f"https://fqw7wvgywmudbpkldjueby.streamlit.app/{client}/predict"
     response = requests.get(local_api_url)
     response.raise_for_status()
     proba_dict = response.json()
